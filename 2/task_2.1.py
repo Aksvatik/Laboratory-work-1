@@ -1,31 +1,45 @@
-def great(name):
-    print(f"Привет, {name.capitalize()}!")
+def greet(name):
+    return f"Привет, {name.title()}!"
 
-
-user_name = input("Как тебя зовут?\n").strip()
-
-great(user_name)
-
-#--------------------------------------
 
 def square(number):
-    return number**2
+    return format(number**2, ".2f")
 
-
-#user_num = int(input("Введите число: "))
-
-#print(square(user_num))
-
-#-------------------------------------
 
 def max_of_two(x, y):
     if x != y:
-        return f"Большее число: {max(x, y)}"
-    else:
-        return f"Числа равны."
+        return f"\nБольшее число: {max(x, y)}"
+    return "\nЧисла равны."
 
 
-#user_num1 = int(input("Введите первое число: "))
-#user_num2 = int(input("Введите второе число: "))
+def checking_name(text):
+    while True:
+        name = input(text).strip()
+        if not name:
+            print("Имя не может быть пустым.\n")
+            continue
+        if all(part.isalpha() for part in name.split()):
+            return name
+        print("Имя не должно содержать цифры или символы.\n")
 
-#print(max_of_two(user_num1, user_num2))
+
+def error_checking(text):
+    while True:
+        number = input(text)
+        try:
+            return float(number)
+        except ValueError:
+            print("Вводите только числа.\n")
+
+
+user_name = checking_name("Как тебя зовут?\n")
+print(greet(user_name))
+
+user_num = error_checking("Введите число: ")
+print(square(user_num))
+
+
+user_num1 = error_checking("Введите первое число: ")
+print("")
+user_num2 = error_checking("Введите второе число: ")
+print(max_of_two(user_num1, user_num2))
